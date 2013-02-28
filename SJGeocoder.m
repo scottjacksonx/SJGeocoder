@@ -69,8 +69,8 @@
 			MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
 			request.naturalLanguageQuery = addressString;
 			[request setRegion:MKCoordinateRegionMakeWithDistance(region.center, region.radius, region.radius)];
-			_localSearch = [[MKLocalSearch alloc] initWithRequest:request];
-			[_localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *localSearchError) {
+			MKLocalSearch *localSearch = [[MKLocalSearch alloc] initWithRequest:request];
+			[localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *localSearchError) {
 				if (localSearchError) {
 					NSLog(@"error doing local search: %@", localSearchError);
 				} else {
