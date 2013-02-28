@@ -13,6 +13,10 @@
 
 @implementation SJGeocoder
 
+- (id)init {
+	return [self initWithSearchSource:SJGeocoderSearchSourceGeocoder];
+}
+
 - (id)initWithSearchSource:(SJGeocoderSearchSource)source {
 	self = [super init];
 	if (self) {
@@ -48,13 +52,6 @@
 
 - (void)geocodeAddressString:(NSString *)addressString inRegion:(CLRegion *)region completionHandler:(CLGeocodeCompletionHandler)completionHandler {
 	_searchRegion = region;
-	if (self.searchSource & SJGeocoderSearchSourceLocalSearch) {
-		MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
-		request.naturalLanguageQuery = addressString;
-		[request setRegion:MKCoordinateRegionMakeWithDistance(region.center, region.radius, region.radius)];
-		_localSearch = [[MKLocalSearch alloc] initWithRequest:request];
-	}
-	
 	[super geocodeAddressString:addressString inRegion:region completionHandler:^(NSArray *placemarks, NSError *geocodeError) {
 		if (geocodeError) {
 			NSLog(@"error geocoding: %@", geocodeError);
@@ -67,7 +64,12 @@
 			}
 			_geocodePlacemarks = tempArray;
 		}
-		if (_localSearch) {
+		
+		if (self.searchSource & SJGeocoderSearchSourceLocalSearch) {
+			MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+			request.naturalLanguageQuery = addressString;
+			[request setRegion:MKCoordinateRegionMakeWithDistance(region.center, region.radius, region.radius)];
+			_localSearch = [[MKLocalSearch alloc] initWithRequest:request];
 			[_localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *localSearchError) {
 				if (localSearchError) {
 					NSLog(@"error doing local search: %@", localSearchError);
