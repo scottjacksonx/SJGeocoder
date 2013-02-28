@@ -28,5 +28,5 @@ In use, SJGeocoder is identical to CLGeocoder, except that instead of returning 
 
 We check at runtime whether we can perform an `MKLocalSearch` (since it was only introduced in iOS 6.1). If we're on iOS < 6.1, we just do a geocode.
 
-The completion handler returns an array of SJPlacemark objects because of an issue with MKLocalSearch -- a CLGeocoder's results (CLPlacemark objects) have names, but an MKLocalSearch's results (MKMapItems that have a CLPlacemark property) don't have names. Returning SJPlacemarks just makes sure that whatever SJGeocoder gives back, it has a name. You shouldn't need to think about SJPlacemark objects, since they just inherit from CLPlacemark, but just in case, that's why they exist.
+The completion handler returns an array of SJPlacemark objects because of an issue with MKLocalSearch -- a CLGeocoder's results (CLPlacemark objects) have names, but an MKLocalSearch's results (MKMapItems that have a CLPlacemark property) don't have names (I have a Radar out on this). Returning SJPlacemarks just makes sure that whatever SJGeocoder gives back, it has a name. You shouldn't need to think about SJPlacemark objects, since they just inherit from CLPlacemark, but just in case, that's why they exist.
 
