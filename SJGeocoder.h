@@ -17,6 +17,7 @@ typedef NSUInteger SJGeocoderSearchSource;
 
 @interface SJGeocoder : CLGeocoder {
 	CLRegion *_searchRegion;
+	BOOL _restrictResultsToSearchRegion;
 	MKLocalSearch *_localSearch;
 	
 	NSArray *_localSearchPlacemarks;

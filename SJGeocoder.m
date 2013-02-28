@@ -17,6 +17,7 @@
 	self = [super init];
 	if (self) {
 		self.searchSource = source;
+		_restrictResultsToSearchRegion = YES;
 		_localSearchPlacemarks = [NSMutableArray new];
 		_geocodePlacemarks = [NSMutableArray new];
 		if (!IOS_6_1_OR_ABOVE) {
@@ -29,13 +30,19 @@
 
 - (NSArray *)combinedResults {
 	NSMutableArray *combinedResults = [NSMutableArray new];
-	for (NSArray *array in @[_localSearchPlacemarks, _geocodePlacemarks]) {
-		for (SJPlacemark *p in array) {
-			if ([self coordinate:p.location.coordinate isContainedInRegion:_searchRegion]) {
-				[combinedResults addObject:p];
+	if (_restrictResultsToSearchRegion) {
+		for (NSArray *array in @[_localSearchPlacemarks, _geocodePlacemarks]) {
+			for (SJPlacemark *p in array) {
+				if ([self coordinate:p.location.coordinate isContainedInRegion:_searchRegion]) {
+					[combinedResults addObject:p];
+				}
 			}
 		}
+	} else {
+		[combinedResults addObjectsFromArray:_localSearchPlacemarks];
+		[combinedResults addObjectsFromArray:_geocodePlacemarks];
 	}
+	
 	return combinedResults;
 }
 
