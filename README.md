@@ -18,8 +18,7 @@ SJGeocoder is a drop-in `CLGeocoder` replacement that also performs an `MKLocalS
 		[geocoder geocodeAddressString:query
 							  inRegion:brisbane
 					 completionHandler:^(NSArray *placemarks, NSError *error) {
-						 // placemarks is an array of SJPlacemark objects
-						 // (which inherit from CLPlacemark, so they can be used just as CLPlacemarks)
+						 // placemarks is an array of CLPlacemark objects
 					 }
 		 ];
 
