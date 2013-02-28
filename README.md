@@ -14,15 +14,16 @@ SJGeocoder is a drop-in `CLGeocoder` replacement that also performs an `MKLocalS
 
 In use, SJGeocoder is identical to CLGeocoder, except that instead of returning just a list of geocode results, the list also contains local search results.
 
+	NSString *query = @"Apple Store";
 	CLLocationCoordinate2D brisbaneCenter = CLLocationCoordinate2DMake(-27.573663, 153.019974);
-		CLRegion *brisbane = [[CLRegion alloc] initCircularRegionWithCenter:brisbaneCenter radius:1000 * 300 identifier:@"Brisbane"];
-		CLGeocoder *geocoder = [[SJGeocoder alloc] initWithSearchSource:SJGeocoderSearchSourceAny];
-		[geocoder geocodeAddressString:query
-							  inRegion:brisbane
-					 completionHandler:^(NSArray *placemarks, NSError *error) {
-						 // placemarks is an array of CLPlacemark objects
-					 }
-		 ];
+	CLRegion *brisbane = [[CLRegion alloc] initCircularRegionWithCenter:brisbaneCenter radius:1000 * 300 identifier:@"Brisbane"];
+	CLGeocoder *geocoder = [[SJGeocoder alloc] initWithSearchSource:SJGeocoderSearchSourceAny];
+	[geocoder geocodeAddressString:query
+						  inRegion:brisbane
+				 completionHandler:^(NSArray *placemarks, NSError *error) {
+					 // placemarks is an array of CLPlacemark objects
+				 }
+	];
 
 ## Notes
 
