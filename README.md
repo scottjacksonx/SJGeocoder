@@ -2,7 +2,7 @@
 
 ## CLGeocoder, but with local search results built-in
 
-SJGeocoder is a drop-in `CLGeocoder` replacement that also performs an `MKLocalSearch` for the query and gives back a combined list of results. Copy the files into your project, do a `#import "SJGeocoder"`, and use SJGeocoder in place of CLGeocoder. The only difference is that you can use the `initWithSearchSource:` constructor, which takes a `SJGeocoderSearchSource` parameter:
+SJGeocoder is a drop-in `CLGeocoder` replacement that also performs an `MKLocalSearch` for the query and gives back a combined list of results. Copy the files into your project, do a `#import "SJGeocoder.h"`, and use SJGeocoder in place of CLGeocoder. The only difference is that you can use the `initWithSearchSource:` constructor, which takes a `SJGeocoderSearchSource` parameter:
 
 - `SJGeocoderSearchSourceGeocoder` to just do a geocode,
 - `SJGeocoderSearchSourceLocalSearch` to just do a local search, or
