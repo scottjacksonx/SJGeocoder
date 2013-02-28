@@ -8,7 +8,7 @@ SJGeocoder is a drop-in `CLGeocoder` replacement that also performs an `MKLocalS
 - `SJGeocoderSearchSourceLocalSearch` to just do a local search, or
 - `SJGeocoderSearchSourceAny` to do 'em both
 
-(`init` just does a geocode, like a normal CLGeocoder.)
+(`init` just calls `init:SJGeocoderSearchSourceGeocoder`, so it's just like a normal CLGeocoder.)
 
 ## Example
 
