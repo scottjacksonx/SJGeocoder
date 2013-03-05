@@ -8,6 +8,7 @@
 
 #import "SJGeocoder.h"
 #import "SJPlacemark.h"
+#import <MapKit/MapKit.h>
 
 #define IOS_6_1_OR_ABOVE NSClassFromString(@"MKLocalSearchRequest")
 
@@ -56,6 +57,9 @@
 
 - (void)geocodeAddressString:(NSString *)addressString inRegion:(CLRegion *)region completionHandler:(CLGeocodeCompletionHandler)completionHandler {
 	_searchRegion = region;
+	if (!region) {
+		_restrictResultsToSearchRegion = NO;
+	}
 	[super geocodeAddressString:addressString inRegion:region completionHandler:^(NSArray *placemarks, NSError *geocodeError) {
 		if (geocodeError) {
 			NSLog(@"error geocoding: %@", geocodeError);
