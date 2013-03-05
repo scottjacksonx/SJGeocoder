@@ -8,6 +8,7 @@
 
 #import "SJGeocoder.h"
 #import "SJPlacemark.h"
+#import <MapKit/MapKit.h>
 
 #define IOS_6_1_OR_ABOVE NSClassFromString(@"MKLocalSearchRequest")
 
