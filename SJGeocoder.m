@@ -56,6 +56,9 @@
 
 - (void)geocodeAddressString:(NSString *)addressString inRegion:(CLRegion *)region completionHandler:(CLGeocodeCompletionHandler)completionHandler {
 	_searchRegion = region;
+	if (!region) {
+		_restrictResultsToSearchRegion = NO;
+	}
 	[super geocodeAddressString:addressString inRegion:region completionHandler:^(NSArray *placemarks, NSError *geocodeError) {
 		if (geocodeError) {
 			NSLog(@"error geocoding: %@", geocodeError);
